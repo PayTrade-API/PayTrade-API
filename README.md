@@ -1,255 +1,386 @@
-# PayTrade
+# PayTrade | README
 
-PayTrade is a platform that combines a digital goods marketplace with a separate payment API for developers.
+**PayTrade** is an ecosystem of Telegram tools that combines a marketplace, payment infrastructure, an API, and a Python SDK.
+
+The project allows users to list and purchase products, complete transactions, and communicate with sellers. Developers can integrate PayTrade payment capabilities into their own applications.
+
+---
 
 ## Table of Contents
 
-1. PayTrade Marketplace
-2. PayTrade API
-3. Shared PayTrade Balance
-4. PayTrade SDK
-5. SDK Methods
-6. Payment Workflow
-7. Test Mode
-8. Error Handling
-9. FAQ
-10. Support and Links
+1. [About the Project](#1-about-the-project) — purpose and main features.
+2. [Ecosystem](#2-ecosystem) — the main components of PayTrade.
+3. [Marketplace](#3-marketplace) — trading within Telegram.
+4. [Products and Catalog](#4-products-and-catalog) — listing, management, and search.
+5. [Purchases and Transactions](#5-purchases-and-transactions) — payments and communication between parties.
+6. [Balance and Reviews](#6-balance-and-reviews) — payments and reputation.
+7. [PayTrade API](#7-paytrade-api) — payment integration.
+8. [Python SDK](#8-python-sdk) — a library for developers.
+9. [Getting Started](#9-getting-started) — application creation and setup.
+10. [Usage Examples](#10-usage-examples) — working with payments.
+11. [Security](#11-security) — recommendations for using the API.
+12. [Support and Links](#12-support-and-links) — official resources.
 
-## 1. PayTrade Marketplace
+---
 
-PayTrade Marketplace is a digital goods and services marketplace with PayTrade acting as a guarantor.
+## 1. About the Project
 
-The platform is designed for buying and selling digital goods. Transactions are processed through PayTrade, which ensures the proper sequence of item delivery and payment confirmation.
+PayTrade brings together several areas:
 
-1. The buyer selects an item from the catalog.
-2. The buyer places an order and makes a payment.
-3. An order is created after the payment is confirmed.
-4. The seller delivers the item to the buyer.
-5. The buyer checks the received item and confirms receipt.
-6. After confirmation, the funds are credited to the seller's PayTrade balance.
+- **Marketplace** — a platform for buying and selling products.
+- **Payments** — payments through Telegram Stars and an internal balance.
+- **API** — the ability to connect PayTrade to third-party applications.
+- **Python SDK** — a library for convenient API integration.
+- **Telegram Bot** — the main interface of the project.
 
-This means the seller receives the funds after the buyer confirms receipt of the item.
+PayTrade is being developed as a unified ecosystem in which user-facing and technical features complement each other.
 
-Main marketplace features:
+## 2. Ecosystem
 
-- Digital goods catalog.
-- Product search by name.
-- Product categories.
-- Product listings with descriptions and prices.
-- Seller profiles.
-- Rating and review system.
-- Shopping cart and order checkout.
-- Favorite items.
-- Management of personal listings.
-- Editing product information.
-- Discounts and listing promotion.
-- Payments using PayTrade balance and Telegram Stars.
-- Purchase history.
-- Customer support requests.
+The main components of the project:
 
-## 2. PayTrade API
+- **Main bot:** [@paytradebot](https://t.me/paytradebot)
+- **Support:** [@PayTradeSupportbot](https://t.me/PayTradeSupportbot)
+- **API:** a payment interface for third-party applications.
+- **Python SDK:** a tool for integrating the API into Python projects.
 
-PayTrade API is an independent payment interface designed for developers who want to integrate PayTrade into their own projects.
+## 3. Marketplace
 
-It allows developers to create payments, retrieve information about them, cancel payments, and track changes in their statuses.
+The marketplace allows users to act as both sellers and buyers.
 
-The API is suitable for integration into:
+Marketplace features:
 
-- Telegram bots.
-- Online stores.
-- Marketplaces.
-- Web applications.
-- Third-party services.
-- Other projects that require a payment processing system.
+- Creating product listings.
+- Browsing the product catalog.
+- Searching by name.
+- Viewing seller profiles.
+- Purchasing through the internal balance or Telegram Stars.
+- Communicating with the other party in a transaction.
+- Confirming product receipt.
+- Leaving reviews.
 
-PayTrade API does not manage marketplace products, listings, or transactions. It handles the payment functionality of third-party projects.
+New products are reviewed before being published in the catalog.
 
-Main API features:
+## 4. Products and Catalog
 
-- Retrieving account information.
-- Creating payment invoices.
-- Retrieving payment information.
-- Canceling payments.
-- Tracking payment statuses.
-- Waiting for payment status changes.
-- Test mode.
-- Accepting payments in Telegram Stars.
-- Crediting funds received through the API to the PayTrade balance.
-- Transferring Telegram Stars received through the API to the PayTrade balance.
+### Product Listings
 
-## 3. Shared PayTrade Balance
+To create a listing, the seller provides a name, adds a photo, and sets a price in Telegram Stars.
 
-PayTrade Marketplace and PayTrade API are two independent products.
+Each seller can list up to 10 products.
 
-They are connected through a shared PayTrade balance.
+### Product Management
 
-Funds available in the balance can be used within the supported features of the ecosystem.
+The listing owner can:
 
-## 4. PayTrade SDK
+- Change the product name.
+- Change the price.
+- Replace the photo.
+- Delete the photo.
+- Delete the product.
 
-PayTrade SDK is a Python library designed to make working with PayTrade API easier.
+### Catalog
 
-The SDK provides ready-to-use methods for interacting with the API, so developers do not need to implement every HTTP request manually.
+The catalog displays listings available for purchase.
 
-### Requirements
+Users can browse products, navigate between pages, and open detailed product information.
 
-- Python 3.10 or newer.
-- PayTrade SDK installed.
-- PayTrade API key.
+Priority listings are displayed above regular listings. Discounted products show the discount amount and the final price.
 
-### Installation
+### Product Page
 
-The SDK is distributed in `.whl` format.
+A product page displays its name, price, seller information, and a photo if one has been added.
 
-After obtaining the library file, install it using:
+From this page, users can proceed with a purchase or open the seller's profile.
 
-```bash
-pip install paytrade_sdk-0.2.0-py3-none-any.whl
-```
+## 5. Purchases and Transactions
 
-After installation, the library can be imported:
+PayTrade provides two payment methods:
+
+**Purchase using the balance**
+
+The product price is deducted from the buyer's internal balance.
+
+**Direct purchase**
+
+The buyer pays for the product using Telegram Stars.
+
+After a successful payment, an order is created and communication between the parties begins.
+
+### Order Communication
+
+The buyer and seller receive purchase notifications and can exchange messages through the bot.
+
+The seller can indicate that the product has been handed over, while the buyer can confirm receipt.
+
+Once the buyer confirms receipt, the transaction is completed and the funds are credited to the seller.
+
+Purchasing your own product is not supported.
+
+## 6. Balance and Reviews
+
+### Internal Balance
+
+The balance is used to purchase products within the marketplace.
+
+The seller receives the funds for a completed transaction after the buyer confirms receipt of the product.
+
+### Reviews
+
+After completing a purchase, the buyer can rate the seller on a five-star scale and leave a review.
+
+The seller's profile displays rating statistics. Users can also view individual reviews with information about the product, rating, and date.
+
+## 7. PayTrade API
+
+**PayTrade API** allows developers to use the project's payment capabilities in their own applications.
+
+It can be used to:
+
+- Connect applications to PayTrade.
+- Create payments.
+- Get payment links.
+- Check payment statuses.
+- Retrieve application information.
+
+Payments are processed in Telegram Stars (`XTR`).
+
+### How Payments Work
+
+1. Your application creates an order.
+2. A payment is created through the API.
+3. Your application receives a payment link.
+4. The buyer follows the link to the official PayTrade bot.
+5. The buyer pays for the order.
+6. Your application retrieves the latest payment information.
+7. After payment is confirmed, your application performs the required actions.
+
+PayTrade provides the payment infrastructure, while the logic of the third-party application remains under the control of its developer.
+
+## 8. Python SDK
+
+**PayTrade SDK** is the official Python library for working with the API.
+
+The current public release is **v0.2.0**.
+
+The SDK supports asynchronous operation and provides methods for:
+
+- Connecting to the API and retrieving application information (`me()`).
+- Creating payments (`create_payment()`, `payment()`).
+- Retrieving payment information (`get_payment()`).
+- Cancelling payments (`cancel_payment()`).
+- Waiting for payment results (`wait_for_payment()`).
+- Handling API errors.
+
+The library is suitable for asynchronous Python projects, including Telegram bots built with aiogram.
+
+### Payment Object
+
+After creating or retrieving a payment, the SDK returns a `Payment` object.
+
+Main fields:
+
+| Field | Description |
+|---|---|
+| `id` | Payment identifier |
+| `order_id` | Developer's order identifier |
+| `buyer_id` | Buyer identifier provided when creating the payment |
+| `amount` | Payment amount |
+| `currency` | Payment currency |
+| `title` | Payment title |
+| `description` | Payment description |
+| `status` | Current payment status |
+| `created_at` | Creation time |
+| `expires_at` | Expiration time |
+| `paid_at` | Payment time, if the payment has been paid |
+| `payment_url` | Payment URL |
+| `test_mode` | Indicates whether test mode is enabled |
+
+The `paid` property is also available. It returns `True` if the payment status is `paid`.
+
+### Payment Statuses
+
+`wait_for_payment()` checks the payment status until one of the following final statuses is reached:
+
+- `paid` — the payment has been successfully completed.
+- `cancelled` — the payment has been cancelled.
+- `expired` — the payment has expired.
+
+For other statuses, the SDK continues waiting and checking the payment.
+
+### Errors
+
+The SDK provides the `PayTradeError` exception.
+
+It contains the following fields:
+
+- `code` — error code.
+- `status` — HTTP status code returned by the API. For network errors, it may be `0`.
+
+Error codes handled directly by the SDK:
+
+| Code | Description |
+|---|---|
+| `network_error` | Could not connect to the API or a network timeout occurred |
+| `invalid_response` | The API returned a response that could not be processed as JSON |
+| `http_error` | A general HTTP error when the API did not provide its own error code |
+
+For HTTP errors, the API may return its own error code and message, which the SDK passes through `PayTradeError`.
+
+## 10. Usage Examples
+
+### Connecting
 
 ```python
+import asyncio
 from paytrade_sdk import PayTrade, PayTradeError
+
+API_KEY = "YOUR_API_KEY"
+BASE_URL = "https://a-ktj8.onrender.com"
+
+
+async def main():
+    async with PayTrade(API_KEY, BASE_URL) as api:
+        account = await api.me()
+        print(account)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-To work with the API, create a `PayTrade` instance and provide your API key and API address.
+### Creating a Payment
 
-Base API URL:
+```python
+payment = await api.create_payment(
+    order_id="order_001",
+    buyer_id=123456789,
+    amount=10,
+    title="Test purchase",
+    description="Payment through PayTrade",
+    return_payload="user_123",
+    expires_in=3600
+)
 
-```text
-https://a-ktj8.onrender.com
+print(payment.id)
+print(payment.payment_url)
+print(payment.status)
 ```
 
-The API key is used to authorize requests.
+`order_id` — a unique order identifier in the developer's application.
 
-## 5. SDK Methods
+`buyer_id` — a numeric buyer identifier passed to the API.
 
-The SDK provides the following main methods:
+`return_payload` — an additional string passed to the API along with the payment data.
 
-| Method                       | Description                                      |
-| ---------------------------- | --------------------------------------------- |
-| `me()`                       | Retrieves account and application information |
-| `create_payment()`           | Creates a new payment                       |
-| `payment()`                  | Alternative payment creation method         |
-| `get_payment(payment_id)`    | Retrieves information about a specific payment     |
-| `cancel_payment(payment_id)` | Cancels a payment                                |
-| `wait_for_payment()`         | Waits for a payment status change            |
+The `payment()` method can also be used to create a payment with an alternative argument order:
 
-### `me()`
+```python
+payment = await api.payment(
+    title="Test purchase",
+    amount=10,
+    buyer_id=123456789,
+    order_id="order_001"
+)
+```
 
-Retrieves information about the account and connected application.
+### Checking a Payment
 
-It is used to verify the connection and retrieve available account information.
+```python
+payment_info = await api.get_payment(payment.id)
 
-### `create_payment()`
+print(payment_info.status)
+print(payment_info.paid)
+print(payment_info.amount)
+```
 
-Creates a new payment invoice.
+### Cancelling a Payment
 
-After the payment is created, the developer receives the information required to proceed with the payment.
+Use `cancel_payment()` to send a cancellation request:
 
-### `payment()`
+```python
+cancelled_payment = await api.cancel_payment(payment.id)
 
-An alternative method for creating a payment.
+print(cancelled_payment.status)
+```
 
-### `get_payment(payment_id)`
+The method returns a `Payment` object containing the latest data received from the API.
 
-Allows the developer to retrieve the latest information about a payment using its ID.
+### Waiting for Payment
 
-It is used to check the status of a previously created payment.
+```python
+payment_result = await api.wait_for_payment(
+    payment.id,
+    timeout=300
+)
 
-### `cancel_payment(payment_id)`
+print(payment_result.status)
+print(payment_result.paid)
+```
 
-Sends a request to cancel a payment.
+By default, the SDK checks the payment every 3 seconds.
 
-### `wait_for_payment()`
+If the waiting period expires, the SDK raises `TimeoutError`. This does not cancel the payment: it remains in its current state. You can use `get_payment()` to check its status.
 
-Allows the application to wait for a payment status change, so developers do not need to implement their own continuous polling mechanism.
+### Error Handling
 
-## 6. Payment Workflow
+```python
+try:
+    payment_result = await api.wait_for_payment(
+        payment.id,
+        timeout=300
+    )
 
-A typical PayTrade API integration consists of several steps:
+except PayTradeError as error:
+    print("Error code:", error.code)
+    print("HTTP status:", error.status)
+    print("Message:", error)
 
-1. The developer integrates the SDK or configures HTTP requests manually.
-2. The application sends a request to PayTrade API.
-3. A payment invoice is created.
-4. The user follows the payment link.
-5. The payment is made through the official PayTrade Telegram bot.
-6. The application can check the payment status.
-7. After the payment is confirmed, the application performs the necessary actions on its side.
+except TimeoutError:
+    print("Payment waiting timed out")
+```
 
-Payment links lead to the official PayTrade Telegram bot.
+When retrying the same payment request, use the original `order_id` to avoid creating a duplicate operation.
 
-The Telegram bot specified by the developer is used to redirect the user back after the payment is completed.
+## 11. Security
 
-## 7. Test Mode
+When integrating with the PayTrade API, the following practices are recommended:
 
-PayTrade API includes a test mode.
+- Store your API key securely.
+- Do not publish your key in public repositories.
+- Do not share your key with third parties.
+- Use HTTPS when connecting to the API.
+- Verify payment results before delivering a product or service.
+- Do not treat payment creation as confirmation that the payment has been completed.
 
-It is designed to test the integration and display the payment workflow without actually charging Telegram Stars.
+## 12. Support and Links
 
-Test mode allows developers to verify:
+**Main Telegram Bot**
 
-- Payment creation.
-- Payment link generation.
-- Payment information display.
-- Retrieving payment statuses.
-- Handling payment results.
+[@paytradebot](https://t.me/paytradebot)
 
-Test operations are separate from real payments.
+**Support**
 
-## 8. Error Handling
+[@PayTradeSupportbot](https://t.me/PayTradeSupportbot)
 
-The `PayTradeError` exception can be used when working with the SDK.
+**GitHub**
 
-It is designed to handle errors that occur while interacting with PayTrade API.
+[PayTrade-API](https://github.com/PayTrade-API/PayTrade-API)
 
-Developers should account for possible errors when creating, retrieving, and canceling payments so their applications can handle failed requests correctly.
+**Public Release**
 
-## 9. FAQ
+[v0.2.0](https://github.com/PayTrade-API/PayTrade-API/releases/tag/v0.2.0)
 
-**Can PayTrade API be used without the marketplace?**
+**API Base URL**
 
-Yes. PayTrade API is an independent product that can be integrated into third-party projects.
+[https://a-ktj8.onrender.com](https://a-ktj8.onrender.com)
 
-**Can the API be integrated into a Telegram bot?**
+**User Agreement**
 
-Yes. The API is designed to support integration with Telegram bots, among other applications.
+[https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11](https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11)
 
-**Which currency is used for payments?**
+For questions about the marketplace, API integration, or SDK usage, contact support.
 
-Payments are made using Telegram Stars.
+---
 
-**Can payments be tested without actually charging Stars?**
-
-Yes. A test mode is available for this purpose.
-
-**Where do payment links lead?**
-
-They lead to the official PayTrade Telegram bot.
-
-**Are Marketplace and API connected?**
-
-They are two independent products connected through a shared PayTrade balance.
-
-**Can funds received through the API be credited to the PayTrade balance?**
-
-Yes. Funds received through the API can be credited to the PayTrade balance.
-
-**Can the bot balance be topped up using CryptoBot?**
-
-Yes. CryptoBot can be used to top up the PayTrade balance in Stars.
-
-## 10. Support and Links
-
-**Official PayTrade bot:**
-
-[https://t.me/paytradebot](https://t.me/paytradebot)
-
-**Technical support:**
-
-[https://t.me/PayTradeSupportbot](https://t.me/PayTradeSupportbot)
-
-**Repository:** PayTrade-API
-
-© PayTrade. All rights reserved.
+**PayTrade — a marketplace and payment infrastructure for Telegram, united in one ecosystem.**
