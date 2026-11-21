@@ -379,6 +379,9 @@ except TimeoutError:
 
 [https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11](https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11)
 
+**Установка**
+pip install paytrade-sdk
+
 По вопросам работы маркетплейса, подключения API и использования SDK можно обратиться в поддержку.
 
 ---
