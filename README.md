@@ -379,6 +379,9 @@ When integrating with the PayTrade API, the following practices are recommended:
 
 [https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11](https://telegra.ph/Polzovatelskoe-soglashenie-PayTrade-06-11)
 
+**Installation**
+pip install paytrade-sdk
+
 For questions about the marketplace, API integration, or SDK usage, contact support.
 
 ---
