@@ -382,6 +382,9 @@ When integrating with the PayTrade API, the following practices are recommended:
 **Installation**
 pip install paytrade-sdk
 
+**PayTrade PyPI** 
+[https://pypi.org/project/paytrade-sdk/](https://pypi.org/project/paytrade-sdk/)
+
 For questions about the marketplace, API integration, or SDK usage, contact support.
 
 ---
